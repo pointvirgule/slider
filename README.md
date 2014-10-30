@@ -1,0 +1,1 @@
+# slider [![Build Status](https://travis-ci.org/pointvirgule/slider.png?branch=master)](https://travis-ci.org/pointvirgule/slider)
