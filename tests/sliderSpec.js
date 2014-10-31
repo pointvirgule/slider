@@ -74,4 +74,14 @@ describe( 'Slider', function () {
 
 	} );
 
+
+	it( 'ui should be updated', function () {
+
+		var slider = new Slider( document.createElement( 'div' ), 0, 100 );
+
+		slider.setValue( 70 );
+		expect( slider.cursor.getAttribute('style') ).toEqual( 'left:70%' );
+
+	} );
+
 } );
