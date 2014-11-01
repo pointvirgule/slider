@@ -81,7 +81,6 @@
 			{
 				this._callback( this.getColor() );
 			}
-			console.log( this.getColor() );
 
 		}
 
