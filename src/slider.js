@@ -163,7 +163,7 @@
 			{
 				this._callback( this.getValue() );
 			}
-			this.onAnimationFrame = this.render.bind( this );
+			this.onAnimationFrame = this.onAnimationFrame || this.render.bind( this );
 
 			if ( !this.renderId )
 			{
