@@ -1,6 +1,11 @@
 .slider {
   position: relative;
   min-height: 30px;
+  user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .slider .line {
   position: absolute;
@@ -30,6 +35,34 @@
   -webkit-border-radius: 100%;
   border: solid 3px #ffffff;
 }
+.unselectable {
+  user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  position: relative;
+  height: 100%;
+}
 #test {
-  margin: 15px;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  -o-transform: translate3d(0, -50%, 0);
+  -ms-transform: translate3d(0, -50%, 0);
+  -moz-transform: translate3d(0, -50%, 0);
+  -webkit-transform: translate3d(0, -50%, 0);
+}
+#test .wrapper {
+  padding: 15px;
 }

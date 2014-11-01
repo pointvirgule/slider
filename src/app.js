@@ -2,8 +2,15 @@
 
 ( function ( window ) {
 	
-	var Slider = window.Slider,
+	var ColorPicker = window.ColorPicker,
 		el = window.document.getElementById( 'test' ),
-		slider = new Slider( el );
+		picker = new ColorPicker( el ),
+		body = window.document.getElementsByTagName( 'body' )[0];
+
+	picker.on( 'change', function ( color ) {
+
+		body.setAttribute( 'style', 'background:' + color + ';' );
+
+	} );
 
 } )( window );

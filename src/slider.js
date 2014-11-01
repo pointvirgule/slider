@@ -31,7 +31,7 @@
 			this.element.addEventListener( 'mousedown', boundOnStart );
 			this.element.addEventListener( 'touchstart', boundOnStart );
 
-			this.element.addEventListener( 'dragstart', this.onDrag.bind( this ) );
+			this.element.addEventListener( 'dragstart', this.onDrag );
 			
 		},
 
@@ -60,7 +60,7 @@
 
 		getValue: function () {
 
-			return this.minValue + ( this.maxValue - this.minValue ) * this.pct;
+			return Math.round( this.minValue + ( this.maxValue - this.minValue ) * this.pct );
 
 		},
 
@@ -97,11 +97,11 @@
 
 		onStart: function (e) {
 
-			this.onMoveListener = this.onMove.bind( this );
+			this.onMoveListener = this.onMoveListener || this.onMove.bind( this );
 			window.addEventListener( 'mousemove', this.onMoveListener );
 			window.addEventListener( 'touchmove', this.onMoveListener );
 
-			this.onReleaseListener = this.onRelease.bind( this );
+			this.onReleaseListener = this.onReleaseListener || this.onRelease.bind( this );
 			window.addEventListener( 'mouseup', this.onReleaseListener );
 			window.addEventListener( 'touchend', this.onReleaseListener );
 			window.addEventListener( 'touchcancel', this.onReleaseListener );
@@ -110,6 +110,9 @@
 
 		},
 
+		/*
+		*	Prevent drag
+		*/
 		onDrag: function (e) {
 
 			e.preventDefault();
@@ -148,8 +151,8 @@
 			window.removeEventListener( 'mousemove', this.onMoveListener );
 			window.removeEventListener( 'touchmove', this.onMoveListener );
 
-			window.addEventListener( 'mouseup', this.onReleaseListener );
-			window.addEventListener( 'touchend', this.onReleaseListener );
+			window.removeEventListener( 'mouseup', this.onReleaseListener );
+			window.removeEventListener( 'touchend', this.onReleaseListener );
 			window.removeEventListener( 'touchcancel', this.onReleaseListener );
 
 		},
@@ -160,13 +163,19 @@
 			{
 				this._callback( this.getValue() );
 			}
-			this.render();
+			this.onAnimationFrame = this.render.bind( this );
+
+			if ( !this.renderId )
+			{
+				this.renderId = window.requestAnimationFrame( this.onAnimationFrame );
+			}
 
 		},
 
 		render: function() {
 
 			this.cursor.setAttribute( 'style', 'left:' + (this.pct * 100) + '%' );
+			this.renderId = null;
 
 		}
 

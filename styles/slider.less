@@ -8,6 +8,7 @@
 	
 	position: relative;
 	min-height: (@slider_cursor_size / 2 + @slider_cursor_border_size + 7 ) * 2;
+	.unselectable();
 
 	.line {
 
@@ -50,5 +51,15 @@
 	border-radius: @value;
 	-moz-border-radius: @value;
 	-webkit-border-radius: @value;
+
+}
+
+.unselectable {
+
+	user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 
 }
