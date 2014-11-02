@@ -4,13 +4,19 @@
 
 	var Slider;
 
-	Slider = function ( element, minValue, maxValue ) {
+	Slider = function ( element, minValue, maxValue, step ) {
 
 		this.element = element;
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 
-		this.pct = 0;
+		if ( ( maxValue - minValue ) % step !== 0 )
+		{
+			throw new Error( 'Range should be divisible by step' );
+		}
+		this.step = step;
+
+		this.value = minValue;
 
 		this._callback = null;
 		this.inflate();
@@ -37,10 +43,8 @@
 
 		setPercentage: function ( pct ) {
 
-			pct = Math.max( Math.min( pct, 1 ), 0 );
-
-			this.pct = pct;
-			this.update();
+			pct = Math.max( Math.min( pct, 1 ), 0 );			
+			this.setValue( ( this.maxValue - this.minValue ) * pct );
 
 		},
 
@@ -53,6 +57,8 @@
 		setValue: function ( value ) {
 
 			value = Math.max( Math.min( value, this.maxValue ), this.minValue );
+			value = Math.round( value / this.step ) * this.step;
+			this.value = value;
 			this.pct = ( value - this.minValue ) / ( this.maxValue - this.minValue );
 			this.update();
 
@@ -60,7 +66,7 @@
 
 		getValue: function () {
 
-			return Math.round( this.minValue + ( this.maxValue - this.minValue ) * this.pct );
+			return this.value;
 
 		},
 

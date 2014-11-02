@@ -6,7 +6,7 @@ describe( 'Slider', function () {
 
 	it( 'should be instanciable', function () {
 
-		var slider = new Slider( document.createElement( 'div' ), 0, 100 );
+		var slider = new Slider( document.createElement( 'div' ), 0, 100, 50 );
 
 		expect(slider).not.toBeUndefined();
 
@@ -14,7 +14,7 @@ describe( 'Slider', function () {
 
 	it( 'value should be changed', function () {
 
-		var slider = new Slider( document.createElement( 'div' ), 0, 100 );
+		var slider = new Slider( document.createElement( 'div' ), 0, 100, 1 );
 
 		slider.setValue( 70 );
 		expect( slider.getValue() ).toEqual( 70 );
@@ -24,7 +24,7 @@ describe( 'Slider', function () {
 
 	it( 'percentage should be changed', function () {
 
-		var slider = new Slider( document.createElement( 'div' ), 0, 100 );
+		var slider = new Slider( document.createElement( 'div' ), 0, 100, 1 );
 
 		slider.setPercentage( 0.7 );
 		expect( slider.getValue() ).toEqual( 70 );
@@ -32,10 +32,22 @@ describe( 'Slider', function () {
 
 	} );
 
+	it( 'values should be rouded to step', function () {
+
+		var slider = new Slider( document.createElement( 'div' ), 0, 1.5, 0.5 );
+
+		slider.setValue( 0.4 );
+		expect( slider.getValue() ).toEqual( 0.5 );
+
+		slider.setPercentage( 0.15 );
+		expect( slider.getValue() ).toEqual( 0 );
+
+	} );
+
 
 	it( 'should emit events on value change', function () {
 
-		var slider = new Slider( document.createElement( 'div' ), 0, 100 ),
+		var slider = new Slider( document.createElement( 'div' ), 0, 100, 1 ),
 			changedValue = 0;
 
 		slider.on( 'change', function (value) {
@@ -55,7 +67,7 @@ describe( 'Slider', function () {
 
 	it( 'listener should be detachable', function () {
 
-		var slider = new Slider( document.createElement( 'div' ), 0, 100 ),
+		var slider = new Slider( document.createElement( 'div' ), 0, 100, 1 ),
 			changedValue = 0, 
 
 			listener = slider.on( 'change', function (value) {
@@ -73,32 +85,5 @@ describe( 'Slider', function () {
 		expect( changedValue ).toEqual( 70 );
 
 	} );
-
-
-	/*
-	*	Seems to be a problem with polyfill of requestAnimationFrame
-	*/
-	// describe( 'ui changes', function () {
-
-	// 	var slider;
-
-	// 	beforeEach( function (done) {
-
-	// 		slider = new Slider( document.createElement( 'div' ), 0, 100 );
-			
-	// 		slider.setValue( 70 );
-	// 		spyOn(slider, 'onAnimationFrame');
-	// 		window.setTimeout( done, 1000 );
-
-	// 	} );
-
-	// 	it( 'ui should be updated', function () {
-
-	// 		expect(slider.onAnimationFrame).toHaveBeenCalled();
-	// 		expect( slider.cursor.getAttribute('style') ).toEqual( 'left:70%' );
-
-	// 	} );
-
-	// } );
 
 } );
