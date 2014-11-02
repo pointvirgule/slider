@@ -13,4 +13,13 @@
 
 	} );
 
+	/*
+	*	Prevent overscroll on iOS 
+	*/
+	window.document.addEventListener( 'touchmove', function (e) {
+
+		e.preventDefault();
+
+	} );
+
 } )( window );

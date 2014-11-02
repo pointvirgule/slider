@@ -6,6 +6,8 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .slider .line {
   position: absolute;
@@ -41,6 +43,8 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 body {
   position: absolute;
