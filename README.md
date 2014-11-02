@@ -2,11 +2,13 @@
 
 ## Use
 
+Make sure you include the `polyfills.js` content somewhere in your web app.
+
 ### Constructor
 
 You can create a new instance of the slider via the constructor `Slider`.
 
-```
+```js
 var element = document.createElement( 'div' ),
 
 	minValue = 0,
@@ -22,7 +24,7 @@ var element = document.createElement( 'div' ),
 
 You can listen to user interactions by listening the `change` event.
 
-```
+```js
 slider.on( 'change', function ( value ) {
 	
 	/*
@@ -37,7 +39,7 @@ slider.on( 'change', function ( value ) {
 
 You can also set and get the value of the slider by the following methods.
 
-```
+```js
 // Sets the value of the slider.
 slider.setValue( 70 );
 
@@ -47,7 +49,7 @@ slider.getValue();
 
 You can also set and get the percentage of the range of you slider
 
-```
+```js
 // Sets the percentage of the slider.
 slider.setPercentage( 70 );
 
@@ -71,4 +73,21 @@ Just import the stylesheet and override some variables
 @slider_line_height: 2px;
 
 ```
+
+## Extend
+
+To extend the slider, install the dev environment runnning
+```bash
+npm install
+```
+
+Then run the grunt `watch` task that will compile your `less` and check your js files.
+```bash
+grunt watch
+```
+
+To run the unit tests, just run 
+```bash
+npm test
+``` 
 
