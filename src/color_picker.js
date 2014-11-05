@@ -32,19 +32,21 @@
 			wrapper.appendChild( element );
 			this.rPicker = new Slider( element, 0, 255, 1 );
 			this.rPicker.on( 'change', this.update.bind( this ) );
+			this.rPicker.setValue(255);
 
 			element = document.createElement( 'div' );
 			element.classList.add( 'slider-green' );
 			wrapper.appendChild( element );
 			this.gPicker = new Slider( element, 0, 255, 1 );
 			this.gPicker.on( 'change', this.update.bind( this ) );
+			this.gPicker.setValue(255);
 
 			element = document.createElement( 'div' );
 			element.classList.add( 'slider-blue' );
 			wrapper.appendChild( element );
 			this.bPicker = new Slider( element, 0, 255, 1 );
 			this.bPicker.on( 'change', this.update.bind( this ) );
-
+			this.bPicker.setValue(255);
 		},
 
 		getColor: function () {
